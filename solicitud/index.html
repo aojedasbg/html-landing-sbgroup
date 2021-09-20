@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>SB Financial | Solicitud</title>
+    <link rel="icon" type="image/png" href="../img/logo-financial.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background-color: #f3f6f5;
+        }
+        
+        .nav-link {
+            font-weight: 700;
+            color: #888 !important;
+            background-color: transparent !important;
+            font-size: larger;
+            border-radius: 0 !important;
+        }
+        
+        .nav-link.active {
+            color: #072e5a !important;
+            border-bottom: 4px #072E5A solid;
+        }
+        
+        .form-input {
+            display: inline-block;
+            width: 100%;
+            height: 50px;
+            font-size: 14px;
+            border: 1px solid #e2e2e2;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            border-radius: 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+            transition: all .3s;
+        }
+        
+        .form-input:focus {
+            border-color: #333 !important;
+            outline: 0 !important;
+        }
+        
+        .btn-form {
+            background: #072E5A;
+            height: 50px!important;
+            line-height: 50px!important;
+            color: #fff;
+            font-size: 14px;
+            padding: 0 30px;
+            outline: 0 !important;
+            transition: all 0.5s;
+        }
+        
+        .btn-form:hover,
+        .btn-form:active {
+            color: #072E5A;
+            background: transparent;
+        }
+        
+        .btn-form-o {
+            background: transparent;
+            height: 50px!important;
+            line-height: 50px!important;
+            color: #072E5A;
+            font-size: 14px;
+            padding: 0 30px;
+            outline: 0 !important;
+            transition: all 0.5s;
+        }
+        
+        .btn-form-o:hover,
+        .btn-form-o:active {
+            color: #fff;
+            background: #072E5A;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center pt-5 mt-5">
+                <img src="./logo-financial.png" height="75px">
+                <br>
+                <h3 class="py-3">Registra tus credenciales de SAT para diseñar tu propuesta de manera ágil</h3>
+            </div>
+            <div class="col-sm-8 offset-sm-2 mt-5">
+                <ul class="col-sm-6 offset-sm-3 nav nav-pills nav-justified" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="menu1-tab" data-toggle="tab" href="#menu1">CIEC</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="menu2-tab" data-toggle="tab" href="#menu2">E. Firma</a>
+                    </li>
+                </ul>
+                <div class="tab-content mt-5">
+                    <div class="tab-pane container active" id="menu1" role="tabpanel" aria-labelledby="menu1-tab">
+                        <div class="col-sm-8 offset-sm-2">
+                            <div class="form-group">
+                                <b for="pwd">RFC</b>
+                                <input id="ciecRfc" class="form-input" placeholder="Escribe algo">
+                            </div>
+                        </div>
+                        <div class="col-sm-8 offset-sm-2">
+                            <div class="form-group">
+                                <b for="pwd">Contraseña</b>
+                                <input id="ciecPass" type="password" class="form-input" placeholder="Contraseña">
+                            </div>
+                        </div>
+                        <div class="col-sm-8 offset-sm-2 text-center">
+                            <small>Tu información está protegida por nuestro sistema de seguridad.</small>
+                        </div>
+                        <div class="col-sm-8 offset-sm-2 my-5 text-center">
+                            <button class="btn-form px-5" onclick="createCertWithCiec()">Enviar</button>
+                        </div>
+                        <div class="col-sm-8 offset-sm-2 mb-5 text-center">
+                            <small color="#072E5A" data-toggle="popover" data-placement="right" data-content="Nos conectamos a SAT para validar tus datos con el objetivo de brindar una solucion agil, facil y sencilla"><b>¿Por que te pedimos la contraseña del SAT?</b></small>
+                        </div>
+                    </div>
+                    <div class="tab-pane container fade" id="menu2" role="tabpanel" aria-labelledby="menu2-tab">
+                        <div class="col-sm-12 p-0">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <b for="pwd">Certificado</b>
+                                </div>
+                                <div class="col-sm-12 d-flex p-0">
+                                    <div class="col-sm-8">
+                                        <input type="text" id="certText" class="form-input" placeholder="Buscar" onclick="clickFileInput('certFile')" readonly>
+                                        <input type="file" id="certFile" class="form-input" style="display: none !important" onchange="changeFileInput('certFile', 'certText')">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button class="btn-form-o px-5" width="100%" onclick="clickFileInput('certFile')">Buscar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 p-0">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <b for="pwd">Clave privada</b>
+                                </div>
+                                <div class="col-sm-12 d-flex p-0">
+                                    <div class="col-sm-8">
+                                        <input type="text" id="keyText" class="form-input" placeholder="Buscar" onclick="clickFileInput('keyFile')" readonly>
+                                        <input type="file" id="keyFile" class="form-input" style="display: none !important" onchange="changeFileInput('keyFile', 'keyText')">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button class="btn-form-o px-5" width="100%" onclick="clickFileInput('keyFile')">Buscar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <b for="pwd">Contraseña</b>
+                                <input id="esignPass" type="password" class="form-input" placeholder="Contraseña">
+                            </div>
+                        </div>
+                        <div class="col-sm-8 text-center">
+                            <small>Tu información está protegida por nuestro sistema de seguridad.</small>
+                        </div>
+                        <div class="col-sm-8 offset-sm-2 my-5 text-center">
+                            <button class="btn-form px-5" onclick="createCertWithEsign()">Enviar</button>
+                        </div>
+                        <div class="col-sm-8 offset-sm-2 mb-5 text-center">
+                            <small color="#072E5A" data-toggle="popover" data-placement="right" data-content="Nos conectamos a SAT para validar tus datos con el objetivo de brindar una solucion agil, facil y sencilla"><b>¿Por que te pedimos la contraseña del SAT?</b></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalSuccess">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-body text-center">
+                    <div class="modal-content">
+                        <div class="col-sm-12 p-3">
+                            <h3>¡Registro realizado con éxito!</h3>
+                            <p class="py-3">Uno de nuestros ascesores se pondrá en contacto contigo lo más antes posible<br>para compartir tu propuesta.</p>
+                            <div class="col-sm-6 offset-sm-3">
+                                <button class="btn-form px-5" onclick="window.location.replace('../index.html');">Volver al inicio</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalError">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-body text-center">
+                    <div class="modal-content">
+                        <div class="col-sm-12 p-3">
+                            <h3>Error en el registro</h3>
+                            <p class="py-3">Hubo un problema al tratar de completar tu registro. Por favor, intenta reenviar la<br>solicitud o intentalo de nuevo más tarde</p>
+                            <div id="errorText"></div>
+                            <div class="col-sm-12 d-flex p-0">
+                                <div class="col-sm-6 text-right">
+                                    <button class="btn-form-o px-5" data-dismiss="modal">Cancelar</button>
+                                </div>
+                                <div class="col-sm-6 text-left">
+                                    <button class="btn-form px-5" onclick="resendCertCreation()">Reenviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var baseUrl = 'https://api.sandbox.sat.ws';
+        var apiKey = 'c1eab53e9c09474763203a6162d6982a';
+        var creationType = 1;
+
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+
+        function clickFileInput(fileInput) {
+            $('#' + fileInput).click();
+        }
+
+        function changeFileInput(fileInput, fileText) {
+            const routeSplited = $('#' + fileInput).val().split('\\');
+            const fileName = routeSplited[routeSplited.length - 1];
+
+            $('#' + fileText).val(fileName);
+        }
+
+        function resendCertCreation() {
+            if (creationType == 1) {
+                createCertWithCiec();
+            }
+            if (creationType == 2) {
+                createCertWithEsign();
+            }
+        }
+
+        function createCertWithCiec() {
+            creationType = 1;
+            var data = {
+                type: 'ciec',
+                rfc: $('#ciecRfc').val(),
+                password: $('#ciecPass').val()
+            };
+
+            createCert(data);
+        }
+
+        async function createCertWithEsign() {
+            creationType = 2;
+            var data = {
+                type: 'efirma',
+                certificate: '',
+                privateKey: '',
+                password: $('#esignPass').val()
+            };
+
+            const toBase64 = file => new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+
+            if ($('#certFile').prop("files").length > 0 && $('#keyFile').prop("files").length > 0) {
+                const certificate = await toBase64($('#certFile').prop("files")[0]).catch(e => Error(e));
+                const privateKey = await toBase64($('#keyFile').prop("files")[0]).catch(e => Error(e));
+
+                data.certificate = String(certificate).split('base64,')[1];
+                data.privateKey = String(privateKey).split('base64,')[1];
+            }
+
+            createCert(data);
+        }
+
+        function createCert(data) {
+            $.ajax({
+                type: 'POST',
+                url: 'https://ws.sbgroup.com.mx/solicitud',
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.response.id) {
+                        console.log(response);
+                        $('#modalSuccess').modal({
+                            backdrop: 'static',
+                            keyboard: false
+                        });
+                    } else {
+                        console.log(response)
+                        $('#errorText').html(`<div style="color: red; padding-bottom: 10px">Error: ${response.response.detail}</div>`);
+                        $('#modalError').modal({
+                            backdrop: 'static',
+                            keyboard: false
+                        });
+                    }
+                }
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                $('#errorText').html(`<div style="color: red; padding-bottom: 10px">Error: ${jqXHR.responseJSON.detail}</div>`);
+                $('#modalError').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
